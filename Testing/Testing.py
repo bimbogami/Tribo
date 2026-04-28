@@ -7,7 +7,6 @@ pygame.init()
 WIDTH, HEIGHT = 1920, 1080
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pixel Space Survival")
-
 clock = pygame.time.Clock()
 
 ship_images = [
@@ -37,8 +36,8 @@ for i in range(4):
     frame.blit(asteroid_sheet, (0, 0), (i * FRAME_WIDTH, 0, FRAME_WIDTH, FRAME_HEIGHT))
     asteroid_frames.append(pygame.transform.scale(frame, (90, 90)))
 
-restart_img = pygame.transform.scale(pygame.image.load("restart.png").convert_alpha(), (200, 80))
-exit_img = pygame.transform.scale(pygame.image.load("exit.png").convert_alpha(), (200, 200))
+restart_img = pygame.transform.scale(pygame.image.load("restart.png").convert_alpha(), (80, 80))
+exit_img = pygame.transform.scale(pygame.image.load("exit.png").convert_alpha(), (80, 80))
 
 restart_rect = restart_img.get_rect(center=(WIDTH//2 - 150, HEIGHT//2))
 exit_rect = exit_img.get_rect(center=(WIDTH//2 + 150, HEIGHT//2))
@@ -47,7 +46,7 @@ trophy_img = pygame.transform.scale(pygame.image.load("New_Highest.png"), (140, 
 
 WHITE = (244, 244, 244)
 
-font = pygame.font.SysFont("consolas", 48)
+font = pygame.font.Font("fonts/pokemon-emerald.ttf", 48)
 
 stars = [[random.randint(0, WIDTH), random.randint(0, HEIGHT)] for _ in range(150)]
 
@@ -165,7 +164,7 @@ while True:
 
         draw_text(f"Score: {score}", 80)
 
-        if check_collision():
+        if check_collision(): # Logic for high score
             if score > high_score:
                 high_score = score
                 new_high = True
