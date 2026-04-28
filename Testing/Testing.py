@@ -15,7 +15,7 @@ ship_images = [
     pygame.transform.scale(pygame.image.load("ship2.png").convert_alpha(), (120, 120))
 ]
 
-asteroid_sheet = pygame.image.load("AsteroidAnimation_0.png").convert_alpha()
+asteroid_sheet = pygame.image.load("AsteroidAnimation_1.png").convert_alpha()
 
 FRAME_WIDTH = asteroid_sheet.get_width() // 4
 FRAME_HEIGHT = asteroid_sheet.get_height()
@@ -37,8 +37,8 @@ for i in range(4):
     frame.blit(asteroid_sheet, (0, 0), (i * FRAME_WIDTH, 0, FRAME_WIDTH, FRAME_HEIGHT))
     asteroid_frames.append(pygame.transform.scale(frame, (90, 90)))
 
-restart_img = pygame.transform.scale(pygame.image.load("restart.png"), (200, 80))
-exit_img = pygame.transform.scale(pygame.image.load("exit.png"), (200, 80))
+restart_img = pygame.transform.scale(pygame.image.load("restart.png").convert_alpha(), (200, 80))
+exit_img = pygame.transform.scale(pygame.image.load("exit.png").convert_alpha(), (200, 200))
 
 restart_rect = restart_img.get_rect(center=(WIDTH//2 - 150, HEIGHT//2))
 exit_rect = exit_img.get_rect(center=(WIDTH//2 + 150, HEIGHT//2))
@@ -148,9 +148,9 @@ while True:
             asteroid_speed += 1
 
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] and player_rect.left > 0:
+        if keys[pygame.K_LEFT] or keys[pygame.K_a] and player_rect.left > 0:
             player_rect.x -= 10
-        if keys[pygame.K_RIGHT] and player_rect.right < WIDTH:
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d] and player_rect.right < WIDTH:
             player_rect.x += 10
 
         if spawn_timer > 25:
